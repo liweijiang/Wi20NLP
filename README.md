@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # LAMA: LAnguage Model Analysis
 <img align="middle" src="img/logo.png" height="256" alt="LAMA">
 
@@ -270,3 +271,6 @@ If the experiments fail on GPU memory allocation, try reducing batch size.
 ## Licence
 
 LAMA is licensed under the CC-BY-NC 4.0 license. The text of the license can be found [here](LICENSE).
+=======
+# Wi20NLP
+>>>>>>> 495a7ff89ab0e3ca62a660de99211af1aa439f08
