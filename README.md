@@ -1,4 +1,12 @@
-<<<<<<< HEAD
+# Wi20NLP Repreduction Experiments
+
+`lama/scripts` folder contains the original scripts from the [Facebook LAMA codebase](https://github.com/facebookresearch/LAMA/).
+
+`lama/reproduction_scripts` folder is all the scripts we used to repreduce their results. 
+We fixed some of their bugs to get the results reported in the original paper.
+
+`lama/extra_experiments_scripts` foler contains the scripts we used to run extra experiments.
+
 # LAMA: LAnguage Model Analysis
 <img align="middle" src="img/logo.png" height="256" alt="LAMA">
 
@@ -271,6 +279,4 @@ If the experiments fail on GPU memory allocation, try reducing batch size.
 ## Licence
 
 LAMA is licensed under the CC-BY-NC 4.0 license. The text of the license can be found [here](LICENSE).
-=======
-# Wi20NLP
->>>>>>> 495a7ff89ab0e3ca62a660de99211af1aa439f08
+
