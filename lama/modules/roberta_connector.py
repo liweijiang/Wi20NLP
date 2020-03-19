@@ -8,7 +8,7 @@ from fairseq.models.roberta import RobertaModel
 from fairseq import utils
 import torch
 from lama.modules.base_connector import *
-# from modules.base_connector import *
+
 
 class RobertaVocab(object):
     def __init__(self, roberta):
@@ -47,7 +47,6 @@ class Roberta(Base_Connector):
         self.task = self.model.task
         self._build_vocab()
         self._init_inverse_vocab()
-        self.max_sentence_length = args.max_sentence_length
 
     def _cuda(self):
         self.model.cuda()
@@ -74,6 +73,8 @@ class Roberta(Base_Connector):
             except Exception as e:
                 self.vocab.append(predicted_token_bpe.strip())
 
+        # print(self.vocab)
+
     def get_id(self, input_string):
         # Roberta predicts ' London' and not 'London'
         string = " " + str(input_string).strip()
@@ -81,7 +82,7 @@ class Roberta(Base_Connector):
         tokens = self.task.source_dictionary.encode_line(
             text_spans_bpe, append_eos=False
         )
-        return tokens.long()
+        return [element.item() for element in tokens.long().flatten()]
 
     def get_batch_generation(self, sentences_list, logger=None, try_cuda=True):
         if not sentences_list:
@@ -120,11 +121,11 @@ class Roberta(Base_Connector):
 
                 tokens_list.append(
                     self.task.source_dictionary.encode_line(
-                        prefix + " " + text_spans_bpe, append_eos=True
+                        str(prefix + " " + text_spans_bpe).strip(), append_eos=True
                     )
                 )
 
-            tokens = torch.cat(tokens_list)[: self.max_sentence_length]
+            tokens = torch.cat(tokens_list)
             output_tokens_list.append(tokens.long().cpu().numpy())
 
             if len(tokens) > max_len:
